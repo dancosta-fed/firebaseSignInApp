@@ -17,17 +17,36 @@ export const styles = StyleSheet.create({
 
     buttonAdd: {
         alignSelf: 'center',
+        backgroundColor: theme.colors.lighter,
+        width: '35%',
+        padding: 10,
+        borderRadius: 15,
+        alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginVertical: 10,
+    },
+
+    buttonSignIn: {
+        alignSelf: 'center',
         backgroundColor: theme.colors.primary,
         width: '35%',
         padding: 10,
         borderRadius: 15,
         alignItems: 'center',
+        flexDirection: 'row',
         justifyContent: 'center',
+        marginVertical: 10,
     },
 
     btnText: {
         color: 'white', 
         fontSize: 30,
+    },
+
+    btnTextCreate: {
+        fontSize: 15,
+        color: theme.colors.primary, 
     },
 
     titleContainer: {

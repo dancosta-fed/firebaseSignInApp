@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1087615673621",
+    "project_id": "myshopping-b3ed9",
+    "storage_bucket": "myshopping-b3ed9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1087615673621:android:ef3e072aa63ff0e969f51c",
+        "android_client_info": {
+          "package_name": "com.firebaseteste"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1087615673621-im7tigllo1rp89712iv24fftjaett57m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCN-1Fnz-KKKL2QBmBHwOs1dUCPhy80QfY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1087615673621-im7tigllo1rp89712iv24fftjaett57m.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1087615673621-16ki1rfnu5njlgp05j71vcmop5smlstl.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.danielFirebase.fireBaseProject"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { SafeAreaView, View, Text, ScrollView, TextInput, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
-
+import auth from '@react-native-firebase/auth';
 
 // import { Container } from './styles';
 
@@ -22,9 +22,15 @@ const SignIn = () => {
   //     navigation.navigate('ForgotPassword');
   // }
 
+  const handleCreateUser = () => {
+
+  }
+
   const handleSignInEmail = async () => {
-    //  const { user } = await auth().signInWithEmailAndPassword(email, password);
-     console.log('SIGNIN COM EMAIL:', email, '', password);
+     const { user } = await auth().signInWithEmailAndPassword(email, password);
+     console.log('SIGNIN COM EMAIL:', email.toLowerCase(), '', password);
+
+     console.log('usuario', user)
 
     //  setEmail('');
     //  setPassword('');
@@ -44,6 +50,7 @@ const SignIn = () => {
             style={styles.passwordInput}
             placeholder="Email"
             onChangeText={setEmail}
+            value={email.toLowerCase()}
           />
         </View>
           <View style={styles.inputContainer}>
@@ -56,8 +63,12 @@ const SignIn = () => {
           </View>
         </View>
 
-        <TouchableOpacity onPress={handleSignInEmail} style={styles.buttonAdd}>
+        <TouchableOpacity onPress={handleSignInEmail} style={styles.buttonSignIn}>
           <Text style={styles.btnText}>Entrar</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={handleSignInEmail} style={styles.buttonAdd}>
+          <Text style={styles.btnTextCreate}>Criar Usuário</Text>
         </TouchableOpacity>
 
         <View style={styles.container}>
