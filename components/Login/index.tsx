@@ -1,18 +1,28 @@
 /* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
-import { SafeAreaView, View, Text, ScrollView, TextInput, TouchableOpacity } from 'react-native';
+import { SafeAreaView, View, Text, ScrollView, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { styles } from './styles';
-import auth from '@react-native-firebase/auth';
+import  auth  from '@react-native-firebase/auth';
 
-// import { Container } from './styles';
+import { initializeApp } from "firebase/app";
+import getAuth from "firebase/auth"
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAQ-_qfCG4OdXkOrkgFWuDtW3B4rahhSyo",
+  authDomain: "testeSignIn.firebaseapp.com",
+  projectId: "myshopping-b3ed9",
+  appId: "1:1087615673621:android:ef3e072aa63ff0e969f51c",
+};
+
+
 
 const SignIn = () => {
-
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  
+  initializeApp(firebaseConfig,);
 
-  // const navigation = useNavigation() as StackNavigationProp<any>;
-  // const { signIn } = useAuth();
 
   // function goToSignUp() {
   //     navigation.navigate('SignUp');
@@ -23,7 +33,20 @@ const SignIn = () => {
   // }
 
   const handleCreateUser = () => {
-
+    auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(() => Alert.alert('Usuário Criado com sucesso! 😜'))
+      .catch(error => {
+        if (error.code === 'auth/email-already-in-use') {
+          console.log('That email address is already in use!');
+        }
+    
+        if (error.code === 'auth/invalid-email') {
+          console.log('That email address is invalid!');
+        }
+    
+        console.error(error);
+      });
   }
 
   const handleSignInEmail = async () => {
@@ -67,7 +90,7 @@ const SignIn = () => {
           <Text style={styles.btnText}>Entrar</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={handleSignInEmail} style={styles.buttonAdd}>
+        <TouchableOpacity onPress={handleCreateUser} style={styles.buttonAdd}>
           <Text style={styles.btnTextCreate}>Criar Usuário</Text>
         </TouchableOpacity>
 
