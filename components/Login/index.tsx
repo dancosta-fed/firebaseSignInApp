@@ -14,12 +14,26 @@ const firebaseConfig = {
   appId: "1:1087615673621:android:ef3e072aa63ff0e969f51c",
 };
 
-
+interface UserData {
+  displayName?: string;
+  email: string;
+  emailVerified: false;
+  metadata: {
+    creationTime: number;
+    lastSignInTime: number;
+  };
+  phoneNumber?: number;
+  photoURL?: string;
+  refreshToken?: string;
+  uid: string;
+}
 
 const SignIn = () => {
   
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [usuario, setUsuario] = useState<UserData>();
+  const [userEmail, setUserEmail] = useState<String>('');
   
   initializeApp(firebaseConfig,);
 
@@ -33,9 +47,11 @@ const SignIn = () => {
   // }
 
   const handleCreateUser = () => {
-    auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(() => Alert.alert('Usuário Criado com sucesso! 😜'))
+    auth().createUserWithEmailAndPassword(email, password)
+      .then(res => {
+        console.log('Dados do usuario', res)
+        Alert.alert('Usuário Criado com sucesso! 😜');
+      })
       .catch(error => {
         if (error.code === 'auth/email-already-in-use') {
           console.log('That email address is already in use!');
@@ -47,17 +63,35 @@ const SignIn = () => {
     
         console.error(error);
       });
+
+    // Clear inputs
+    setEmail('');
+    setPassword('');  
   }
 
   const handleSignInEmail = async () => {
      const { user } = await auth().signInWithEmailAndPassword(email, password);
      console.log('SIGNIN COM EMAIL:', email.toLowerCase(), '', password);
 
-     console.log('usuario', user)
+     console.log('DADOS DO USUARIO', user)
+     console.log('EMAIL DO USUARIO', user.email)
 
-    //  setEmail('');
-    //  setPassword('');
+    //  setUsuario(user || {});
+     setUserEmail(user.email || '');
+
+     setEmail('');
+     setPassword('');
   };
+
+  const getUsuarioDados = () => {
+    // for (const property in usuario) {
+    //   console.log(`${property}: ${usuario[property]}`);
+    //   return setUserEmail(property)
+    // }
+
+    // setUserEmail(usuario.email)
+
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -98,6 +132,7 @@ const SignIn = () => {
           <View style={styles.titleContainer}>
             <Text style={styles.title}>Confira seus dados abaixo</Text>
           </View>
+          <Text style={styles.subtitle}>{userEmail}</Text>
         </View>
 
       </ScrollView>
