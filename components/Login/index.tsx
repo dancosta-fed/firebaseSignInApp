@@ -32,7 +32,6 @@ const SignIn = () => {
   
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [usuario, setUsuario] = useState<UserData>();
   const [userEmail, setUserEmail] = useState<String>('');
   
   initializeApp(firebaseConfig,);
@@ -73,10 +72,6 @@ const SignIn = () => {
      const { user } = await auth().signInWithEmailAndPassword(email, password);
      console.log('SIGNIN COM EMAIL:', email.toLowerCase(), '', password);
 
-     console.log('DADOS DO USUARIO', user)
-     console.log('EMAIL DO USUARIO', user.email)
-
-    //  setUsuario(user || {});
      setUserEmail(user.email || '');
 
      setEmail('');
@@ -132,7 +127,9 @@ const SignIn = () => {
           <View style={styles.titleContainer}>
             <Text style={styles.title}>Confira seus dados abaixo</Text>
           </View>
-          <Text style={styles.subtitle}>{userEmail}</Text>
+
+          <Text style={styles.subtitle}>Email</Text>
+          <Text style={styles.inputText}>{userEmail}</Text>
         </View>
 
       </ScrollView>

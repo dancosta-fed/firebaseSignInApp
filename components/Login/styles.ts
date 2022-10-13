@@ -62,6 +62,7 @@ export const styles = StyleSheet.create({
     subtitle: {
         fontSize: 32,
         color: theme.colors.primary,
+        marginTop: 10
     },
 
     fieldsContainer: {
@@ -87,6 +88,13 @@ export const styles = StyleSheet.create({
         fontSize: 16,
         alignSelf: 'center',
         marginTop: 30,
+    },
+
+    inputText: {
+        color: theme.colors.light,
+        fontSize: 22,
+        alignSelf: 'flex-start',
+        marginTop: 5,
     },
 
     socialButtonsContainer: {
